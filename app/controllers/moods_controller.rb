@@ -1,9 +1,9 @@
-class MoodsController < ApplicationController
+class MoodsController < ProtectedController
   before_action :set_mood, only: [:show, :update, :destroy]
 
   # GET /moods
   def index
-    @moods = Mood.all
+    @moods = current_user.moods
 
     render json: @moods
   end
