@@ -1,9 +1,9 @@
 curl --include --request POST http://localhost:4741/moods \
   --header "Content-Type: application/json" \
-  --header "Authorization: Token token=BAhJIiVlZWM3OWIzMzRhNDRiNDM1ZWUzNTVjM2UwNzYwZmYyYwY6BkVG--a6d03b7ac5751d46ca7921ff508074bd7faf3999" \
+  --header "Authorization: Token token=BAhJIiU2OWY3M2NmZjNhNWRhZGJhNGIzMTNkMDg1OTQ3NDUwZQY6BkVG--3a5da4ab2d2088a9e7110e3596f9a0df9b993810" \
   --data '{
     "mood": {
-      "user_id": 6,
-      "color_id": 19
+      "color_id": 3,
+      "note": "what a day"
     }
   }'

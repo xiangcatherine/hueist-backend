@@ -1,5 +1,5 @@
 class MoodsController < ProtectedController
-  before_action :set_mood, only: [:show, :update, :destroy]
+  before_action :set_mood, only: [:show, :update]
 
   # GET /moods
   def index
@@ -15,7 +15,7 @@ class MoodsController < ProtectedController
 
   # POST /moods
   def create
-    @mood = Mood.new(mood_params)
+    @mood = current_user.moods.new(mood_params)
 
     if @mood.save
       render json: @mood, status: :created, location: @mood
@@ -33,9 +33,10 @@ class MoodsController < ProtectedController
     end
   end
 
-  # DELETE /moods/1
+  # DELETE /moods
   def destroy
-    @mood.destroy
+    @moods = current_user.moods
+    @moods.where(color_id: 0...26).destroy_all
   end
 
   private
