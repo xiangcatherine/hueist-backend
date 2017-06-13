@@ -26,7 +26,7 @@ class MoodsController < ProtectedController
 
   # PATCH/PUT /moods/1
   def update
-    if @mood.update(mood_params)
+    if @mood.update(mood_update_params)
       render json: @mood
     else
       render json: @mood.errors, status: :unprocessable_entity
@@ -44,8 +44,12 @@ class MoodsController < ProtectedController
       @mood = Mood.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def mood_params
+      params.require(:mood).permit(:user_id, :color_id, :note)
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def mood_update_params
       params.require(:mood).permit(:note)
     end
 end
