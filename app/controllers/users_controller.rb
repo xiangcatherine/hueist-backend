@@ -70,7 +70,7 @@ class UsersController < ProtectedController
 
   def user_creds
     params.except(:format)
-          .permit(:email, :password, :password_confirmation)
+          .permit(:email, :password, :password_confirmation, :greeting)
   end
 
   def greeting_params
