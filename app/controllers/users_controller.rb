@@ -47,7 +47,7 @@ class UsersController < ProtectedController
   def updategreeting
     @user = current_user
     if @user.update(greeting_params)
-      head :no_content
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
