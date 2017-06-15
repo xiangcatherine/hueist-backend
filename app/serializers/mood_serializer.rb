@@ -1,6 +1,5 @@
 class MoodSerializer < ActiveModel::Serializer
   attributes :id,
              :created_at,
-             :color_id,
-             :note
+             :color_value
 end
