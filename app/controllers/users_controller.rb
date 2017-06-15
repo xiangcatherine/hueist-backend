@@ -44,6 +44,15 @@ class UsersController < ProtectedController
     end
   end
 
+  def updategreeting
+    @user = current_user
+    if @user.update(greeting_params)
+      head :no_content
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   def index
     render json: User.all
   end
@@ -62,6 +71,10 @@ class UsersController < ProtectedController
   def user_creds
     params.except(:format)
           .permit(:email, :password, :password_confirmation)
+  end
+
+  def greeting_params
+    params.require(:user).permit(:greeting, :id, :email, :token)
   end
 
   def pw_creds

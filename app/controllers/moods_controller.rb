@@ -36,7 +36,7 @@ class MoodsController < ProtectedController
   # DELETE /moods
   def destroy
     @moods = current_user.moods
-    @moods.where(color_id: 0...26).destroy_all
+    @moods.destroy_all
   end
 
   private
