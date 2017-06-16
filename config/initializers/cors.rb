@@ -12,7 +12,7 @@ if Rails.env.development?
     a + format('%d', e)
   end.to_i
   # development_client_origin = "http://localhost:#{development_cors_port}"
-  development_client_origin = "http://localhost:8080"
+  development_client_origin = 'http://localhost:8080'
 end
 
 development_client_origin ||= ENV['CLIENT_ORIGIN']
@@ -22,7 +22,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     origins do |origin, _env|
       '*' == ENV['CLIENT_ORIGIN'] ||
         origin == ENV['CLIENT_ORIGIN'] ||
-        origin == development_client_origin
+        origin == development_client_origin ||
+        origin == 'https://hueist.herokuapp.com' ||
+        origin == 'https://hueist.herokuapp.com/#'
     end
     resource '*',
              headers: :any,
